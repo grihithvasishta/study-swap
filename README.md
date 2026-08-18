@@ -103,3 +103,4 @@ create policy "Allow public insert" on notes for insert with check (true);
 
 ## 📄 License
 MIT License. Built for students, by students.
+"# study-swap" 
