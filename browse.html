@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse and search peer study notes by subject, semester, and topic. Filter, preview, and download college notes.">
+  <title>Browse Notes — StudySwap</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        StudySwap
+      </a>
+      <div class="navbar-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="browse.html">Browse</a>
+        <a href="upload.html">Upload</a>
+      </div>
+      <div class="navbar-right">
+        <a href="upload.html" class="btn-nav btn-nav-primary">Upload Notes</a>
+      </div>
+      <div class="navbar-hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-nav-overlay" id="nav-overlay"></div>
+
+  <main class="page-content">
+
+    <!-- Browse Hero -->
+    <section class="browse-hero">
+      <div class="container">
+        <div class="section-eyebrow">Library</div>
+        <h1>Explore study <em style="font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-weight: 400; color: var(--accent); font-size: 1.06em;">notes</em></h1>
+        <p>Search, filter, and discover quality study materials shared by students.</p>
+      </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <section class="filter-bar">
+      <div class="container">
+        <div class="filter-bar-inner">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="search-input" placeholder="Search by title, topic, or uploader..." autocomplete="off">
+            <button class="clear-btn" id="search-clear">&times;</button>
+          </div>
+          <select class="filter-select" id="filter-subject">
+            <option value="">All Subjects</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Physics">Physics</option>
+            <option value="Economics">Economics</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Mechanical Engineering">Mechanical Eng.</option>
+          </select>
+          <select class="filter-select" id="filter-semester">
+            <option value="">All Semesters</option>
+            <option value="Semester 1">Semester 1</option>
+            <option value="Semester 2">Semester 2</option>
+            <option value="Semester 3">Semester 3</option>
+            <option value="Semester 4">Semester 4</option>
+            <option value="Semester 5">Semester 5</option>
+            <option value="Semester 6">Semester 6</option>
+            <option value="Semester 7">Semester 7</option>
+            <option value="Semester 8">Semester 8</option>
+          </select>
+          <select class="filter-select" id="filter-sort">
+            <option value="recent">Most Recent</option>
+            <option value="rating">Highest Rated</option>
+            <option value="downloads">Most Downloads</option>
+            <option value="az">A — Z</option>
+          </select>
+        </div>
+        <div class="filter-pills">
+          <button class="filter-pill" data-subject="Computer Science">Computer Science</button>
+          <button class="filter-pill" data-subject="Mathematics">Mathematics</button>
+          <button class="filter-pill" data-subject="Physics">Physics</button>
+          <button class="filter-pill" data-subject="Economics">Economics</button>
+          <button class="filter-pill" data-subject="Chemistry">Chemistry</button>
+          <button class="filter-pill" data-subject="Mechanical Engineering">Mechanical</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results & Grid -->
+    <section class="browse-grid">
+      <div class="container">
+        <div class="results-info">
+          <div class="results-count" id="results-count">Showing <span>0</span> notes</div>
+          <button class="btn-clear-filters" id="clear-filters-btn">Clear filters</button>
+        </div>
+        <div class="notes-grid" id="browse-notes-grid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="navbar-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            StudySwap
+          </a>
+          <p class="footer-brand-text">A free, open platform for college students to share and access peer-reviewed study notes and revision guides.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="index.html">Home</a>
+          <a href="browse.html">Browse Notes</a>
+          <a href="upload.html">Upload Notes</a>
+        </div>
+        <div class="footer-col">
+          <h4>Subjects</h4>
+          <a href="browse.html">Computer Science</a>
+          <a href="browse.html">Mathematics</a>
+          <a href="browse.html">Physics</a>
+          <a href="browse.html">Economics</a>
+        </div>
+        <div class="footer-col">
+          <h4>Info</h4>
+          <a href="#">Help Center</a>
+          <a href="#">Community</a>
+          <a href="#">Terms & Privacy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 StudySwap</span>
+        <span>Built for students, by students</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/browse.js"></script>
+</body>
+</html>
