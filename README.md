@@ -1,106 +1,74 @@
-# StudySwap 📘
+# CampusEats
 
-> A peer-to-peer study notes and academic material sharing platform for college students.
-
-StudySwap allows students to browse, filter, preview, and upload lecture notes, revision guides, formula sheets, and study materials across multiple academic disciplines.
-
----
+CampusEats is a premium, 3-page web platform designed for college students to easily order food from various campus canteens. It features a modern design aesthetic, responsive layouts, and a seamless cart/checkout experience.
 
 ## ✨ Features
 
-- **Home Page (`index.html`)**:
-  - Hero section with custom edtech illustration banner and quick CTA buttons.
-  - Live impact stats counter (2,500+ notes, 18+ subjects, 40+ universities).
-  - Dynamic "Recently Added Notes" grid synchronized in real-time.
-  - 3-step "How It Works" guide and student community footer.
+- **Modern Premium Design**: Glassmorphism navbars, cinematic dark hero sections, and elevated food cards with clean hover animations (inspired by 21st.dev).
+- **Full Menu Browsing**: Real-time search functionality and category filters (Snacks, Meals, Beverages, Desserts).
+- **Cart Management**: Persistent cart state via `localStorage`, item quantity controls, and dynamic total calculation.
+- **Backend Integration**: Includes a Python (FastAPI) backend configured to connect with Supabase for menu data and order persistence.
 
-- **Browse Notes (`browse.html`)**:
-  - **Instant Search**: Real-time keystroke searching across note titles, descriptions, uploaders, and topic tags.
-  - **Multi-criteria Filtering**: Filter by Subject (*Computer Science, Mathematics, Physics, Economics, Chemistry, Mechanical Engineering*), Semester (*Sem 1 to 8*), and Sort (*Recent, Rating, Downloads, A-Z*).
-  - **Quick-filter category pills**: One-click subject filtering.
-  - **Interactive Note Modal**: Document preview sheet with metadata, table of contents, and simulated download action.
-
-- **Upload Notes (`upload.html`)**:
-  - Contribution guidelines and quality tips.
-  - Drag-and-drop file upload zone supporting PDF, DOCX, PNG, JPG.
-  - Client-side validation with real-time feedback and error handling.
-  - Celebratory success modal with instant navigation to Browse Notes.
-
-- **Hybrid Data Layer & Supabase Integration**:
-  - Live remote database synchronization with **Supabase** (`@supabase/supabase-js`).
-  - Automatic `localStorage` caching and fallback for zero latency and offline access.
-
----
-
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
-skill-swap/
-├── index.html              # Home Page
-├── browse.html             # Browse & Search Page
-├── upload.html             # Upload & Contribution Page
-├── README.md               # Documentation
-│
-├── css/
-│   └── style.css           # Design system (DM Sans + Source Serif, dark theme, responsive grid)
-│
-├── js/
-│   ├── supabase-config.js  # Supabase client setup & credentials
-│   ├── data.js             # Data model, seed notes, and Supabase/localStorage sync
-│   ├── navbar.js           # Navigation bar & mobile drawer toggle
-│   ├── home.js             # Home page rendering logic & note preview modal
-│   ├── browse.js           # Real-time search & multi-filter logic
-│   └── upload.js           # Form validation, drag-and-drop & note submission
-│
-└── assets/
-    └── hero-banner.jpg     # Hero banner illustration
+├── index.html          # Home page (Hero, Today's Specials, How it Works)
+├── menu.html           # Full menu with search and filter capabilities
+├── cart.html           # Shopping cart and checkout form
+├── assets/
+│   ├── css/
+│   │   └── styles.css  # Custom design system and utility classes
+│   ├── js/
+│   │   ├── app.js      # Core logic, cart state, and DOM manipulation
+│   │   └── api.js      # API abstraction layer
+│   └── images/         # Premium food photography and UI assets
+└── backend/
+    ├── main.py         # FastAPI application
+    ├── requirements.txt# Python dependencies
+    └── .env            # Supabase credentials (ignored in git)
 ```
-
----
 
 ## 🚀 Getting Started
 
-### 1. Run Locally
-Open `index.html` directly in any modern web browser. No compilation, Node.js, or build steps required.
+### Option 1: Frontend Only (No Setup Required)
+You don't need the backend running to view and interact with the UI. The application uses a fallback sample dataset if the backend is unreachable.
+1. Clone the repository.
+2. Open `index.html` in your web browser.
 
-### 2. Supabase Database Table Setup (Optional)
-To persist notes permanently in your Supabase database, run this SQL in your **Supabase SQL Editor**:
+### Option 2: Full Stack (With FastAPI & Supabase)
+1. Navigate to the `backend/` directory:
+   ```bash
+   cd backend
+   ```
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   # Windows:
+   venv\Scripts\activate
+   # Mac/Linux:
+   source venv/bin/activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Configure your environment variables. Ensure you have a `.env` file in the `backend/` directory:
+   ```env
+   SUPABASE_URL=your_supabase_url
+   SUPABASE_KEY=your_supabase_key
+   ```
+5. Run the FastAPI development server:
+   ```bash
+   uvicorn main:app --reload
+   ```
+   *The server will start at `http://127.0.0.1:8000`.*
 
-```sql
-create table if not exists notes (
-  id text primary key,
-  title text not null,
-  subject text not null,
-  semester text not null,
-  uploader text not null,
-  uploader_initials text,
-  description text not null,
-  file_format text default 'PDF',
-  file_size text default 'N/A',
-  pages integer default 10,
-  downloads integer default 0,
-  rating numeric default 5.0,
-  date_added text default current_date::text,
-  tags text[] default '{}'
-);
+## 🛠 Tech Stack
 
--- Enable public read & insert policies
-alter table notes enable row level security;
-create policy "Allow public read" on notes for select using (true);
-create policy "Allow public insert" on notes for insert with check (true);
-```
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend**: Semantic HTML5, Custom CSS3 Design System, Vanilla JavaScript (ES6+)
-- **Typography**: Google Fonts (`DM Sans`, `Source Serif 4`)
-- **Backend / Database**: [Supabase](https://supabase.com) (PostgreSQL)
-- **Icons**: Inline Feather/Lucide-style SVG icons
-
----
+- **Frontend**: HTML5, Vanilla CSS3, Vanilla JavaScript
+- **Backend**: Python 3, FastAPI, Uvicorn
+- **Database**: Supabase (PostgreSQL)
 
 ## 📄 License
-MIT License. Built for students, by students.
-"# study-swap" 
+MIT License
+# campus-eats-
